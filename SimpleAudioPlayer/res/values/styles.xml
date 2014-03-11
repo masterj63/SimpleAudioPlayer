@@ -4,6 +4,7 @@
     </style>
 
     <style name="AppTheme_withoutBar" parent="AppBaseTheme">
+        <item name="android:windowNoTitle">true</item>
     </style>
     
     <style name="AppTheme_withBar" parent="AppBaseTheme">
