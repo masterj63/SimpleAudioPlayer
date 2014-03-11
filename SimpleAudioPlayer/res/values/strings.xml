@@ -2,5 +2,6 @@
 <resources>
 
     <string name="app_name">SimpleAudioPlayer</string>
+    <string name="title_activity_main">MainActivity</string>
 
 </resources>
