@@ -4,5 +4,6 @@
     <string name="app_name">SimpleAudioPlayer</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="song_title">Mozart.mp3</string>
+    <string name="status">Status:</string>
 
 </resources>
