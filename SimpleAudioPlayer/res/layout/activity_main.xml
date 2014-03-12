@@ -6,7 +6,7 @@
     tools:ignore="MergeRootFrame" >
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/songTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/leftOffset_main"
@@ -23,12 +23,20 @@
         android:layout_marginBottom="@dimen/bottomOffset_main" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/word_Status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/songTitleTextView"
+        android:layout_below="@+id/songTitleTextView"
         android:layout_marginTop="@dimen/statusOffset_main"
         android:text="@string/status" />
+
+    <TextView
+        android:id="@+id/statusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/word_Status"
+        android:layout_alignBottom="@+id/word_Status"
+        android:layout_toRightOf="@+id/word_Status" />
 
 </RelativeLayout>
