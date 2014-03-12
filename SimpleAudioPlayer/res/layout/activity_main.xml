@@ -3,5 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="mdev.master_j.simpleaudioplayer.MainActivity"
-    tools:ignore="MergeRootFrame" />
+    tools:ignore="MergeRootFrame" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/leftOffset_main"
+        android:layout_marginTop="@dimen/topOffset_main"
+        android:text="@string/song_title"
+        android:textSize="@dimen/song_title_size" />
+
+</FrameLayout>
 
