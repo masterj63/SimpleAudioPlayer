@@ -19,6 +19,15 @@ public class FragmentPlayer extends Fragment {
 	private static final String STATUS_TEXTVIEW_PLAYING = "Playing";
 	private static final String STATUS_TEXTVIEW_PAUSED = "Paused";
 	
+	private OnCompletionListener onCompletionListener = new OnCompletionListener() {
+		@Override
+		public void onCompletion(MediaPlayer mp) {
+			player.release();
+			player = null;
+			updatePlaybackStatus();
+		}
+	};
+	
 	void setControlButtonAndStatusTextView(Button controlButton, TextView statusTextView){
 		this.controlButton = controlButton;
 		this.statusTextView = statusTextView;
@@ -38,8 +47,10 @@ public class FragmentPlayer extends Fragment {
 	}
 	
 	void onControlButtonClick(){
-		if(player == null)
+		if(player == null){
 			player = MediaPlayer.create(getActivity(), R.raw.mozart);
+			player.setOnCompletionListener(onCompletionListener);
+		}
 		
 		if(player.isPlaying())
 			player.pause();
@@ -52,14 +63,6 @@ public class FragmentPlayer extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		player = MediaPlayer.create(getActivity(), R.raw.mozart);
-		player.setOnCompletionListener(new OnCompletionListener() {
-			@Override
-			public void onCompletion(MediaPlayer mp) {
-				player = null;
-				updatePlaybackStatus();
-			}
-		});
 	}
 	
 	@Override
