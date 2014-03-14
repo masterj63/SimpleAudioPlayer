@@ -31,17 +31,11 @@ public class MainActivity extends Activity {
 			fragmentTransaction.add(fragmentPlayer, FRAGMENT_PLAYER_KEY);
 			fragmentTransaction.commit();
 		}
+		fragmentPlayer.setControlButtonAndStatusTextView(controlButton, statusTextView);
 	}
 	
 	@Override
 	protected void onStart() {
 		super.onStart();
-		fragmentPlayer = (FragmentPlayer) getFragmentManager().findFragmentByTag(FRAGMENT_PLAYER_KEY);
-		updatePlaybackStatus();
-	}
-	
-	private void updatePlaybackStatus(){
-		controlButton.setText(fragmentPlayer.getControlButtonText());
-		statusTextView.setText(fragmentPlayer.getStatusTextViewText());
 	}
 }

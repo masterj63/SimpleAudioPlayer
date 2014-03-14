@@ -3,10 +3,14 @@ package mdev.master_j.simpleaudioplayer;
 import android.app.Fragment;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class FragmentPlayer extends Fragment {
 	private MediaPlayer player;
 	private boolean idle;
+	private Button controlButton;
+	private TextView statusTextView;
 	
 	private static final String CONTROL_BUTTON_PLAY = "Play";
 	private static final String CONTROL_BUTTON_PAUSE = "Pause";
@@ -15,19 +19,23 @@ public class FragmentPlayer extends Fragment {
 	private static final String STATUS_TEXTVIEW_PLAYING = "Playing";
 	private static final String STATUS_TEXTVIEW_PAUSED = "Paused";
 	
-	String getControlButtonText(){
-		if(player.isPlaying())
-			return CONTROL_BUTTON_PAUSE;
-		else
-			return CONTROL_BUTTON_PLAY;
+	void setControlButtonAndStatusTextView(Button controlButton, TextView statusTextView){
+		this.controlButton = controlButton;
+		this.statusTextView = statusTextView;
+		updatePlaybackStatus();
 	}
 	
-	String getStatusTextViewText(){
-		if(idle)
-			return STATUS_TEXTVIEW_IDLE;
-		if(player.isPlaying())
-			return STATUS_TEXTVIEW_PLAYING;
-		return STATUS_TEXTVIEW_PAUSED;
+	private void updatePlaybackStatus(){
+		if(player.isPlaying()){
+			controlButton.setText(CONTROL_BUTTON_PAUSE);
+			statusTextView.setText(STATUS_TEXTVIEW_PLAYING);
+		}else{
+			controlButton.setText(CONTROL_BUTTON_PLAY);
+			if(idle)
+				statusTextView.setText(STATUS_TEXTVIEW_IDLE);
+			else
+				statusTextView.setText(STATUS_TEXTVIEW_PAUSED);
+		}
 	}
 	
 	@Override
