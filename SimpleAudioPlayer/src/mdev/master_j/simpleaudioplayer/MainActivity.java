@@ -36,8 +36,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		if(fragmentPlayer == null)
-			fragmentPlayer = (FragmentPlayer) getFragmentManager().findFragmentByTag(FRAGMENT_PLAYER_KEY);
+		fragmentPlayer = (FragmentPlayer) getFragmentManager().findFragmentByTag(FRAGMENT_PLAYER_KEY);
 		updatePlaybackStatus();
 	}
 	
