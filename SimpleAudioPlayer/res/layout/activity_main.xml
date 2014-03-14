@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="@dimen/bottomOffset_main" />
+        android:layout_marginBottom="@dimen/bottomOffset_main"
+        android:onClick="onControlButtonClick" />
 
     <TextView
         android:id="@+id/statusTextView_static_word"

@@ -1,11 +1,14 @@
 package mdev.master_j.simpleaudioplayer;
 
+import java.io.IOException;
+
 import android.app.Fragment;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FragmentPlayer extends Fragment {
 	private MediaPlayer player;
@@ -38,6 +41,15 @@ public class FragmentPlayer extends Fragment {
 		}
 	}
 	
+	void onControlButtonClick(){
+		if(player.isPlaying())
+			player.pause();
+		else
+			player.start();
+		idle = false;
+		updatePlaybackStatus();
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +58,7 @@ public class FragmentPlayer extends Fragment {
 			@Override
 			public void onCompletion(MediaPlayer mp) {
 				idle = true;
+				Toast.makeText(getActivity(), "empty", Toast.LENGTH_SHORT).show();
 				updatePlaybackStatus();
 			}
 		});
