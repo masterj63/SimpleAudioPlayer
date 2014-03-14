@@ -34,6 +34,7 @@ public class MainActivity extends Activity {
 		FragmentPlayer fragmentPlayer = (FragmentPlayer) fragmentManager.findFragmentByTag(FRAGMENT_PLAYER_KEY);
 		if(fragmentPlayer == null){
 			fragmentPlayer = new FragmentPlayer();
+			fragmentPlayer.setRetainInstance(true);
 			FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 			fragmentTransaction.add(fragmentPlayer, FRAGMENT_PLAYER_KEY);
 			fragmentTransaction.commit();
