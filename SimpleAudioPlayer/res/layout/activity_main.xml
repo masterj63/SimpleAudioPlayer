@@ -23,7 +23,7 @@
         android:layout_marginBottom="@dimen/bottomOffset_main" />
 
     <TextView
-        android:id="@+id/word_Status"
+        android:id="@+id/statusTextView_static_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/songTitleTextView"
@@ -35,8 +35,8 @@
         android:id="@+id/statusTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/word_Status"
-        android:layout_alignBottom="@+id/word_Status"
-        android:layout_toRightOf="@+id/word_Status" />
+        android:layout_alignBaseline="@+id/statusTextView_static_word"
+        android:layout_alignBottom="@+id/statusTextView_static_word"
+        android:layout_toRightOf="@+id/statusTextView_static_word" />
 
 </RelativeLayout>
