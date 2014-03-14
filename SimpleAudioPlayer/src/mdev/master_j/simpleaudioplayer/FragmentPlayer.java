@@ -23,7 +23,6 @@ public class FragmentPlayer extends Fragment {
 	void setControlButtonAndStatusTextView(Button controlButton, TextView statusTextView){
 		this.controlButton = controlButton;
 		this.statusTextView = statusTextView;
-		updatePlaybackStatus();
 	}
 	
 	private void updatePlaybackStatus(){
@@ -51,6 +50,12 @@ public class FragmentPlayer extends Fragment {
 			}
 		});
 		idle = true;
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		updatePlaybackStatus();
 	}
 	
 	@Override
