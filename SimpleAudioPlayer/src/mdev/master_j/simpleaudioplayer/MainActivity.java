@@ -33,9 +33,4 @@ public class MainActivity extends Activity {
 		}
 		fragmentPlayer.setControlButtonAndStatusTextView(controlButton, statusTextView);
 	}
-	
-	@Override
-	protected void onStart() {
-		super.onStart();
-	}
 }
