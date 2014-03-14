@@ -1,18 +1,14 @@
 package mdev.master_j.simpleaudioplayer;
 
-import java.io.IOException;
-
 import android.app.Fragment;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class FragmentPlayer extends Fragment {
 	private MediaPlayer player;
-	private boolean idle;
 	private Button controlButton;
 	private TextView statusTextView;
 	
@@ -29,24 +25,27 @@ public class FragmentPlayer extends Fragment {
 	}
 	
 	private void updatePlaybackStatus(){
-		if(player.isPlaying()){
+		if(player == null){
+			controlButton.setText(CONTROL_BUTTON_PLAY);
+			statusTextView.setText(STATUS_TEXTVIEW_IDLE);
+		}else if(player.isPlaying()){
 			controlButton.setText(CONTROL_BUTTON_PAUSE);
 			statusTextView.setText(STATUS_TEXTVIEW_PLAYING);
 		}else{
 			controlButton.setText(CONTROL_BUTTON_PLAY);
-			if(idle)
-				statusTextView.setText(STATUS_TEXTVIEW_IDLE);
-			else
-				statusTextView.setText(STATUS_TEXTVIEW_PAUSED);
+			statusTextView.setText(STATUS_TEXTVIEW_PAUSED);
 		}
 	}
 	
 	void onControlButtonClick(){
+		if(player == null)
+			player = MediaPlayer.create(getActivity(), R.raw.mozart);
+		
 		if(player.isPlaying())
 			player.pause();
 		else
 			player.start();
-		idle = false;
+		
 		updatePlaybackStatus();
 	}
 	
@@ -57,12 +56,10 @@ public class FragmentPlayer extends Fragment {
 		player.setOnCompletionListener(new OnCompletionListener() {
 			@Override
 			public void onCompletion(MediaPlayer mp) {
-				idle = true;
-				Toast.makeText(getActivity(), "empty", Toast.LENGTH_SHORT).show();
+				player = null;
 				updatePlaybackStatus();
 			}
 		});
-		idle = true;
 	}
 	
 	@Override
@@ -74,6 +71,7 @@ public class FragmentPlayer extends Fragment {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		player.release();
+		if(player != null)
+			player.release();
 	}
 }
