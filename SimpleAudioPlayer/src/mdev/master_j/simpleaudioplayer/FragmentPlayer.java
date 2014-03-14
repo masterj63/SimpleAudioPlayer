@@ -2,6 +2,7 @@ package mdev.master_j.simpleaudioplayer;
 
 import android.app.Fragment;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -42,6 +43,13 @@ public class FragmentPlayer extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		player = MediaPlayer.create(getActivity(), R.raw.mozart);
+		player.setOnCompletionListener(new OnCompletionListener() {
+			@Override
+			public void onCompletion(MediaPlayer mp) {
+				idle = true;
+				updatePlaybackStatus();
+			}
+		});
 		idle = true;
 	}
 	
