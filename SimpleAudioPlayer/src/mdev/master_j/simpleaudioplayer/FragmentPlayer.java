@@ -12,12 +12,12 @@ public class FragmentPlayer extends Fragment {
 	private Button controlButton;
 	private TextView statusTextView;
 	
-	private static final String CONTROL_BUTTON_PLAY = "Play";
-	private static final String CONTROL_BUTTON_PAUSE = "Pause";
+	private String controlButtonPlay;
+	private String controlButtonPause;
 	
-	private static final String STATUS_TEXTVIEW_IDLE = "Idle";
-	private static final String STATUS_TEXTVIEW_PLAYING = "Playing";
-	private static final String STATUS_TEXTVIEW_PAUSED = "Paused";
+	private String statusTextViewIdle;
+	private String statusTextViewPlaying;
+	private String statusTextViewPaused;
 	
 	private OnCompletionListener onCompletionListener = new OnCompletionListener() {
 		@Override
@@ -35,14 +35,14 @@ public class FragmentPlayer extends Fragment {
 	
 	private void updatePlaybackStatus(){
 		if(player == null){
-			controlButton.setText(CONTROL_BUTTON_PLAY);
-			statusTextView.setText(STATUS_TEXTVIEW_IDLE);
+			controlButton.setText(controlButtonPlay);
+			statusTextView.setText(statusTextViewIdle);
 		}else if(player.isPlaying()){
-			controlButton.setText(CONTROL_BUTTON_PAUSE);
-			statusTextView.setText(STATUS_TEXTVIEW_PLAYING);
+			controlButton.setText(controlButtonPause);
+			statusTextView.setText(statusTextViewPlaying);
 		}else{
-			controlButton.setText(CONTROL_BUTTON_PLAY);
-			statusTextView.setText(STATUS_TEXTVIEW_PAUSED);
+			controlButton.setText(controlButtonPlay);
+			statusTextView.setText(statusTextViewPaused);
 		}
 	}
 	
@@ -63,6 +63,13 @@ public class FragmentPlayer extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		controlButtonPlay = getResources().getString(R.string.control_button_play);
+		controlButtonPause = getResources().getString(R.string.control_button_pause);
+		
+		statusTextViewIdle = getResources().getString(R.string.status_textview_idle);
+		statusTextViewPlaying = getResources().getString(R.string.status_textview_playing);
+		statusTextViewPaused = getResources().getString(R.string.status_textview_paused);
 	}
 	
 	@Override
