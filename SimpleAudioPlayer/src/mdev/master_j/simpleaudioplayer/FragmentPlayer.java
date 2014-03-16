@@ -4,6 +4,8 @@ import android.app.Fragment;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -28,9 +30,28 @@ public class FragmentPlayer extends Fragment {
 		}
 	};
 	
+	private OnClickListener onControlButtonClickListener = new OnClickListener(){
+		@Override
+		public void onClick(View v) {
+			if(player == null){
+				player = MediaPlayer.create(getActivity(), R.raw.mozart);
+				player.setOnCompletionListener(onCompletionListener);
+			}
+			
+			if(player.isPlaying())
+				player.pause();
+			else
+				player.start();
+			
+			updatePlaybackStatus();
+		}
+	};
+	
 	void setControlButtonAndStatusTextView(Button controlButton, TextView statusTextView){
 		this.controlButton = controlButton;
 		this.statusTextView = statusTextView;
+		
+		controlButton.setOnClickListener(onControlButtonClickListener);
 	}
 	
 	private void updatePlaybackStatus(){
@@ -44,20 +65,6 @@ public class FragmentPlayer extends Fragment {
 			controlButton.setText(controlButtonPlay);
 			statusTextView.setText(statusTextViewPaused);
 		}
-	}
-	
-	void onControlButtonClick(){
-		if(player == null){
-			player = MediaPlayer.create(getActivity(), R.raw.mozart);
-			player.setOnCompletionListener(onCompletionListener);
-		}
-		
-		if(player.isPlaying())
-			player.pause();
-		else
-			player.start();
-		
-		updatePlaybackStatus();
 	}
 	
 	@Override
