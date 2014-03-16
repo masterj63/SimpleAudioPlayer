@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	private static final String FRAGMENT_PLAYER_KEY = "mdev.master_j.simpleaudioplayer.FragmentPlayer";
@@ -26,9 +24,5 @@ public class MainActivity extends Activity {
 			fragmentTransaction.add(fragmentPlayer, FRAGMENT_PLAYER_KEY);
 			fragmentTransaction.commit();
 		}
-		
-		Button controlButton = (Button) findViewById(R.id.controlButton);
-		TextView statusTextView = (TextView) findViewById(R.id.statusTextView);
-		fragmentPlayer.setControlButtonAndStatusTextView(controlButton, statusTextView);
 	}
 }

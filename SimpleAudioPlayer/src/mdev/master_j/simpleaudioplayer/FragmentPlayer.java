@@ -47,13 +47,6 @@ public class FragmentPlayer extends Fragment {
 		}
 	};
 	
-	void setControlButtonAndStatusTextView(Button controlButton, TextView statusTextView){
-		this.controlButton = controlButton;
-		this.statusTextView = statusTextView;
-		
-		controlButton.setOnClickListener(onControlButtonClickListener);
-	}
-	
 	private void updatePlaybackStatus(){
 		if(player == null){
 			controlButton.setText(controlButtonPlay);
@@ -77,6 +70,16 @@ public class FragmentPlayer extends Fragment {
 		statusTextViewIdle = getResources().getString(R.string.status_textview_idle);
 		statusTextViewPlaying = getResources().getString(R.string.status_textview_playing);
 		statusTextViewPaused = getResources().getString(R.string.status_textview_paused);
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		
+		controlButton = (Button) getActivity().findViewById(R.id.controlButton);
+		statusTextView = (TextView) getActivity().findViewById(R.id.statusTextView);
+		
+		controlButton.setOnClickListener(onControlButtonClickListener);
 	}
 	
 	@Override
