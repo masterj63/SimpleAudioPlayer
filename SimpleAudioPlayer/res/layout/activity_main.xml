@@ -43,16 +43,18 @@
         android:layout_marginTop="@dimen/statusOffset_main" >
 
     	<ImageView
-        	android:id="@+id/playPauseButton"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:src="@drawable/pause" />
+    	    android:id="@+id/playPauseButton"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:src="@drawable/pause"
+    	    tools:ignore="ContentDescription" />
     	
     	<ImageView
     	    android:id="@+id/stopButton"
     	    android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:src="@drawable/stop" />
+        	android:src="@drawable/stop"
+        	android:contentDescription="@string/contentDescription_stopButton" />
     
     </LinearLayout>
 

@@ -9,4 +9,8 @@
     <string name="status_textview_idle">Idle</string>
     <string name="status_textview_playing">Playing</string>
     <string name="status_textview_paused">Paused</string>
+    
+    <string name="contentDescription_stopButton">Stop playback</string>
+    <string name="contentDescription_playButton">Start playback</string>
+    <string name="contentDescription_pauseButton">Pause playback</string>
 </resources>

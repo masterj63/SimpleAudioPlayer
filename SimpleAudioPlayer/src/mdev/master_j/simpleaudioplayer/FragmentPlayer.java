@@ -14,6 +14,9 @@ public class FragmentPlayer extends Fragment {
 	private ImageView playPauseButton;
 	private TextView statusTextView;
 	
+	private String playButtonContentDescription;
+	private String pauseButtonContentDescription;
+	
 	private String statusTextViewIdle;
 	private String statusTextViewPlaying;
 	private String statusTextViewPaused;
@@ -58,12 +61,15 @@ public class FragmentPlayer extends Fragment {
 	private void updatePlaybackStatus(){
 		if(player == null){
 			playPauseButton.setImageResource(R.drawable.play);
+			playPauseButton.setContentDescription(playButtonContentDescription);
 			statusTextView.setText(statusTextViewIdle);
 		}else if(player.isPlaying()){
 			playPauseButton.setImageResource(R.drawable.pause);
+			playPauseButton.setContentDescription(pauseButtonContentDescription);
 			statusTextView.setText(statusTextViewPlaying);
 		}else{
 			playPauseButton.setImageResource(R.drawable.play);
+			playPauseButton.setContentDescription(playButtonContentDescription);
 			statusTextView.setText(statusTextViewPaused);
 		}
 	}
@@ -75,6 +81,9 @@ public class FragmentPlayer extends Fragment {
 		statusTextViewIdle = getResources().getString(R.string.status_textview_idle);
 		statusTextViewPlaying = getResources().getString(R.string.status_textview_playing);
 		statusTextViewPaused = getResources().getString(R.string.status_textview_paused);
+		
+		playButtonContentDescription = getResources().getString(R.string.contentDescription_playButton);
+		pauseButtonContentDescription = getResources().getString(R.string.contentDescription_pauseButton);
 	}
 	
 	@Override
