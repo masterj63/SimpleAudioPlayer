@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class FragmentPlayer extends Fragment {
 	private MediaPlayer player;
-	private ImageView controlButton;
+	private ImageView playPauseButton;
 	private TextView statusTextView;
 	
 	private String statusTextViewIdle;
@@ -46,13 +46,13 @@ public class FragmentPlayer extends Fragment {
 	
 	private void updatePlaybackStatus(){
 		if(player == null){
-			controlButton.setImageResource(R.drawable.play);
+			playPauseButton.setImageResource(R.drawable.play);
 			statusTextView.setText(statusTextViewIdle);
 		}else if(player.isPlaying()){
-			controlButton.setImageResource(R.drawable.pause);
+			playPauseButton.setImageResource(R.drawable.pause);
 			statusTextView.setText(statusTextViewPlaying);
 		}else{
-			controlButton.setImageResource(R.drawable.play);
+			playPauseButton.setImageResource(R.drawable.play);
 			statusTextView.setText(statusTextViewPaused);
 		}
 	}
@@ -70,10 +70,10 @@ public class FragmentPlayer extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-		controlButton = (ImageView) getActivity().findViewById(R.id.controlButton);
+		playPauseButton = (ImageView) getActivity().findViewById(R.id.playPauseButton);
 		statusTextView = (TextView) getActivity().findViewById(R.id.statusTextView);
 		
-		controlButton.setOnClickListener(onControlButtonClickListener);
+		playPauseButton.setOnClickListener(onControlButtonClickListener);
 	}
 	
 	@Override

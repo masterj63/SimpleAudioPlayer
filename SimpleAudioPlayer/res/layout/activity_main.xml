@@ -41,7 +41,7 @@
         android:layout_marginTop="@dimen/statusOffset_main" >
 
     	<ImageView
-        	android:id="@+id/controlButton"
+        	android:id="@+id/playPauseButton"
         	android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
         	android:layout_marginBottom="@dimen/bottomOffset_main" />
