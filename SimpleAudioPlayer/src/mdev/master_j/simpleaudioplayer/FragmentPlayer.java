@@ -44,6 +44,17 @@ public class FragmentPlayer extends Fragment {
 		}
 	};
 	
+	private OnClickListener onStopButtonClickListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			if(player == null)
+				return;
+			player.release();
+			player = null;
+			updatePlaybackStatus();
+		}
+	};
+	
 	private void updatePlaybackStatus(){
 		if(player == null){
 			playPauseButton.setImageResource(R.drawable.play);
@@ -74,6 +85,9 @@ public class FragmentPlayer extends Fragment {
 		statusTextView = (TextView) getActivity().findViewById(R.id.statusTextView);
 		
 		playPauseButton.setOnClickListener(onControlButtonClickListener);
+		
+		ImageView stopButton = (ImageView) getActivity().findViewById(R.id.stopButton);;
+		stopButton.setOnClickListener(onStopButtonClickListener);
 	}
 	
 	@Override
