@@ -1,7 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="mdev.master_j.simpleaudioplayer.MainActivity"
     tools:ignore="MergeRootFrame" >
 
@@ -14,29 +16,29 @@
         android:text="@string/song_title"
         android:textSize="@dimen/song_title_size" />
 
-    <TextView
-        android:id="@+id/statusTextView_static_word"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/songTitleTextView"
-        android:layout_below="@+id/songTitleTextView"
-        android:layout_marginTop="@dimen/statusOffset_main"
-        android:text="@string/status" />
+        android:layout_marginLeft="@dimen/leftOffset_main"
+        android:layout_marginTop="@dimen/statusOffset_main" >
+        
+		<TextView
+	        android:id="@+id/statusTextView_static_word"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/status" />
 
-    <TextView
-        android:id="@+id/statusTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/statusTextView_static_word"
-        android:layout_alignBottom="@+id/statusTextView_static_word"
-        android:layout_toRightOf="@+id/statusTextView_static_word" />
-    
+    	<TextView
+	        android:id="@+id/statusTextView"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content" />
+    	
+    </LinearLayout>
+
     <Button
         android:id="@+id/controlButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginBottom="@dimen/bottomOffset_main" />
 
-</RelativeLayout>
+</LinearLayout>
