@@ -13,4 +13,5 @@
     <string name="contentDescription_stopButton">Stop playback</string>
     <string name="contentDescription_playButton">Start playback</string>
     <string name="contentDescription_pauseButton">Pause playback</string>
+    <string name="contentDescription_appLogo">Application Logo</string>
 </resources>
