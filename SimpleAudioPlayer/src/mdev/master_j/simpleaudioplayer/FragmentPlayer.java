@@ -6,16 +6,13 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FragmentPlayer extends Fragment {
 	private MediaPlayer player;
-	private Button controlButton;
+	private ImageView controlButton;
 	private TextView statusTextView;
-	
-	private String controlButtonPlay;
-	private String controlButtonPause;
 	
 	private String statusTextViewIdle;
 	private String statusTextViewPlaying;
@@ -49,13 +46,13 @@ public class FragmentPlayer extends Fragment {
 	
 	private void updatePlaybackStatus(){
 		if(player == null){
-			controlButton.setText(controlButtonPlay);
+			controlButton.setImageResource(R.drawable.play);
 			statusTextView.setText(statusTextViewIdle);
 		}else if(player.isPlaying()){
-			controlButton.setText(controlButtonPause);
+			controlButton.setImageResource(R.drawable.pause);
 			statusTextView.setText(statusTextViewPlaying);
 		}else{
-			controlButton.setText(controlButtonPlay);
+			controlButton.setImageResource(R.drawable.play);
 			statusTextView.setText(statusTextViewPaused);
 		}
 	}
@@ -63,9 +60,6 @@ public class FragmentPlayer extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		controlButtonPlay = getResources().getString(R.string.control_button_play);
-		controlButtonPause = getResources().getString(R.string.control_button_pause);
 		
 		statusTextViewIdle = getResources().getString(R.string.status_textview_idle);
 		statusTextViewPlaying = getResources().getString(R.string.status_textview_playing);
@@ -76,7 +70,7 @@ public class FragmentPlayer extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-		controlButton = (Button) getActivity().findViewById(R.id.controlButton);
+		controlButton = (ImageView) getActivity().findViewById(R.id.controlButton);
 		statusTextView = (TextView) getActivity().findViewById(R.id.statusTextView);
 		
 		controlButton.setOnClickListener(onControlButtonClickListener);

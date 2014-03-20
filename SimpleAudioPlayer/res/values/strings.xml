@@ -6,9 +6,6 @@
     <string name="song_title">Mozart.mp3</string>
     <string name="status">Status:</string>
 
-    <string name="control_button_play">Play</string>
-    <string name="control_button_pause">Pause</string>
-    
     <string name="status_textview_idle">Idle</string>
     <string name="status_textview_playing">Playing</string>
     <string name="status_textview_paused">Paused</string>
