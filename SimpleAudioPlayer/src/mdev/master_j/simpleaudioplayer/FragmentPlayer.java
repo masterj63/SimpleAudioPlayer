@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class FragmentPlayer extends Fragment {
 	private MediaPlayer player;
 	private ImageView playPauseButton;
 	private TextView statusTextView;
+	private ProgressBar playbackProgressBar;
 	
 	private String playButtonContentDescription;
 	private String pauseButtonContentDescription;
@@ -58,6 +60,27 @@ public class FragmentPlayer extends Fragment {
 		}
 	};
 	
+	private Runnable playbackProgressUpdater = new Runnable() {
+		@Override
+		public void run() {
+			try{
+				while(true){
+					int max = 0, pos = 0;
+					if(player != null){
+						max = player.getDuration();
+						pos = player.getCurrentPosition();
+					}
+					playbackProgressBar.setMax(max);
+					playbackProgressBar.setProgress(pos);
+					Thread.sleep(500);
+				}
+			}catch(InterruptedException e){
+				e.printStackTrace();
+				Thread.currentThread().interrupt();
+			}
+		}
+	};
+	
 	private void updatePlaybackStatus(){
 		if(player == null){
 			playPauseButton.setImageResource(R.drawable.play);
@@ -92,11 +115,13 @@ public class FragmentPlayer extends Fragment {
 		
 		playPauseButton = (ImageView) getActivity().findViewById(R.id.playPauseButton);
 		statusTextView = (TextView) getActivity().findViewById(R.id.statusTextView);
+		playbackProgressBar = (ProgressBar) getActivity().findViewById(R.id.playbackProgressBar);
 		
 		playPauseButton.setOnClickListener(onControlButtonClickListener);
 		
 		ImageView stopButton = (ImageView) getActivity().findViewById(R.id.stopButton);;
 		stopButton.setOnClickListener(onStopButtonClickListener);
+		new Thread(playbackProgressUpdater).start();
 	}
 	
 	@Override
