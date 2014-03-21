@@ -27,8 +27,8 @@ public class SplashActivity extends Activity {
 	}
 	
 	@Override
-	protected void onDestroy() {
-		super.onDestroy();
+	protected void onPause() {
+		super.onPause();
 		handler.removeCallbacks(homeActivityInvoker);
 	}
 }
