@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 public class FragmentPlayer extends Fragment {
@@ -15,6 +17,7 @@ public class FragmentPlayer extends Fragment {
 	private ImageView playPauseButton;
 	private TextView statusTextView;
 	private ProgressBar playbackProgressBar;
+	private SeekBar volumeSeekBar;
 	
 	private String playButtonContentDescription;
 	private String pauseButtonContentDescription;
@@ -22,6 +25,8 @@ public class FragmentPlayer extends Fragment {
 	private String statusTextViewIdle;
 	private String statusTextViewPlaying;
 	private String statusTextViewPaused;
+	
+	private static final int MAX_VOLUME = 100; 
 	
 	private OnCompletionListener onCompletionListener = new OnCompletionListener() {
 		@Override
@@ -32,12 +37,29 @@ public class FragmentPlayer extends Fragment {
 		}
 	};
 	
+	private OnSeekBarChangeListener onVolumeSeekBarChangeListener = new OnSeekBarChangeListener() {
+		@Override
+		public void onStopTrackingTouch(SeekBar seekBar) {
+		}
+		
+		@Override
+		public void onStartTrackingTouch(SeekBar seekBar) {
+		}
+		
+		@Override
+		public void onProgressChanged(SeekBar seekBar, int progress,
+				boolean fromUser) {
+			updateVolume();
+		}
+	};
+	
 	private OnClickListener onControlButtonClickListener = new OnClickListener(){
 		@Override
 		public void onClick(View v) {
 			if(player == null){
 				player = MediaPlayer.create(getActivity(), R.raw.mozart);
 				player.setOnCompletionListener(onCompletionListener);
+				updateVolume();
 			}
 			
 			if(player.isPlaying())
@@ -80,6 +102,14 @@ public class FragmentPlayer extends Fragment {
 			}
 		}
 	};
+
+	private void updateVolume(){
+		if(player == null)
+			return;
+		float volume = 1.0f * volumeSeekBar.getProgress() / volumeSeekBar.getMax();
+		player.setVolume(volume, volume);
+	}
+	
 	
 	private void updatePlaybackStatus(){
 		if(player == null){
@@ -116,11 +146,17 @@ public class FragmentPlayer extends Fragment {
 		playPauseButton = (ImageView) getActivity().findViewById(R.id.playPauseButton);
 		statusTextView = (TextView) getActivity().findViewById(R.id.statusTextView);
 		playbackProgressBar = (ProgressBar) getActivity().findViewById(R.id.playbackProgressBar);
+		volumeSeekBar = (SeekBar) getActivity().findViewById(R.id.volumeControlSeekBar);
+		
+		volumeSeekBar.setMax(MAX_VOLUME);
+		volumeSeekBar.setProgress(MAX_VOLUME);
+		volumeSeekBar.setOnSeekBarChangeListener(onVolumeSeekBarChangeListener);
 		
 		playPauseButton.setOnClickListener(onControlButtonClickListener);
 		
 		ImageView stopButton = (ImageView) getActivity().findViewById(R.id.stopButton);;
 		stopButton.setOnClickListener(onStopButtonClickListener);
+		
 		new Thread(playbackProgressUpdater).start();
 	}
 	
