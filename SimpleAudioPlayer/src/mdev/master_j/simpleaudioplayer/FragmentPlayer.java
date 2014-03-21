@@ -26,7 +26,8 @@ public class FragmentPlayer extends Fragment {
 	private String statusTextViewPlaying;
 	private String statusTextViewPaused;
 	
-	private static final int MAX_VOLUME = 100; 
+	private static final int MAX_VOLUME = 100;
+	private static final int PLAYBACK_PROGRESS_UPDATE_PERIOD_MS = 100;
 	
 	private OnCompletionListener onCompletionListener = new OnCompletionListener() {
 		@Override
@@ -94,7 +95,7 @@ public class FragmentPlayer extends Fragment {
 					}
 					playbackProgressBar.setMax(max);
 					playbackProgressBar.setProgress(pos);
-					Thread.sleep(500);
+					Thread.sleep(PLAYBACK_PROGRESS_UPDATE_PERIOD_MS);
 				}
 			}catch(InterruptedException e){
 				e.printStackTrace();
