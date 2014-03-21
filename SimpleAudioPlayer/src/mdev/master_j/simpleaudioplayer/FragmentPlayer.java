@@ -32,9 +32,7 @@ public class FragmentPlayer extends Fragment {
 	private OnCompletionListener onCompletionListener = new OnCompletionListener() {
 		@Override
 		public void onCompletion(MediaPlayer mp) {
-			player.release();
-			player = null;
-			updatePlaybackStatus();
+			releasePlayer();
 		}
 	};
 	
@@ -75,11 +73,7 @@ public class FragmentPlayer extends Fragment {
 	private OnClickListener onStopButtonClickListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			if(player == null)
-				return;
-			player.release();
-			player = null;
-			updatePlaybackStatus();
+			releasePlayer();
 		}
 	};
 	
@@ -111,6 +105,13 @@ public class FragmentPlayer extends Fragment {
 		player.setVolume(volume, volume);
 	}
 	
+	private void releasePlayer(){
+		if(player == null)
+			return;
+		player.release();
+		player = null;
+		updatePlaybackStatus();
+	}
 	
 	private void updatePlaybackStatus(){
 		if(player == null){
@@ -171,6 +172,6 @@ public class FragmentPlayer extends Fragment {
 	public void onDestroy() {
 		super.onDestroy();
 		if(player != null)
-			player.release();
+			releasePlayer();
 	}
 }
