@@ -16,7 +16,7 @@
             android:name="mdev.master_j.simpleaudioplayer.SplashActivity"
             android:label="@string/app_name"
             android:noHistory="true"
-            android:theme="@style/AppTheme_withoutBar" >
+            android:theme="@style/AppTheme.WithoutBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +26,7 @@
         <activity
             android:name="mdev.master_j.simpleaudioplayer.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme_withBar" >
+            android:theme="@style/AppTheme.WithBar" >
         </activity>
     </application>
 

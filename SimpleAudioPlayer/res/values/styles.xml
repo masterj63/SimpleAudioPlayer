@@ -3,11 +3,11 @@
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
     </style>
 
-    <style name="AppTheme_withoutBar" parent="AppBaseTheme">
+    <style name="AppTheme.WithoutBar" parent="AppBaseTheme">
         <item name="android:windowNoTitle">true</item>
     </style>
     
-    <style name="AppTheme_withBar" parent="AppBaseTheme">
+    <style name="AppTheme.WithBar" parent="AppBaseTheme">
     </style>
 
 </resources>
