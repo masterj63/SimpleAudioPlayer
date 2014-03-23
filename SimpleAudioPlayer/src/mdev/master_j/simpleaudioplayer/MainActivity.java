@@ -1,6 +1,7 @@
 package mdev.master_j.simpleaudioplayer;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -14,12 +15,12 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		FragmentManager fragmentManager = getFragmentManager();
-		FragmentPlayer fragmentPlayer = (FragmentPlayer) fragmentManager.findFragmentByTag(FRAGMENT_PLAYER_KEY);
-		if(fragmentPlayer == null){
-			fragmentPlayer = new FragmentPlayer();
-			fragmentPlayer.setRetainInstance(true);
+		Fragment fragment = fragmentManager.findFragmentByTag(FRAGMENT_PLAYER_KEY);
+		if(fragment == null){
+			fragment = new FragmentPlayer();
+			fragment.setRetainInstance(true);
 			FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-			fragmentTransaction.add(fragmentPlayer, FRAGMENT_PLAYER_KEY);
+			fragmentTransaction.add(fragment, FRAGMENT_PLAYER_KEY);
 			fragmentTransaction.commit();
 		}
 	}
