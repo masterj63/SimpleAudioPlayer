@@ -8,15 +8,13 @@ import android.os.Bundle;
 public class MainActivity extends Activity {
 	private static final String FRAGMENT_PLAYER_KEY = "mdev.master_j.simpleaudioplayer.FragmentPlayer";
 	
-	private FragmentPlayer fragmentPlayer;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
 		FragmentManager fragmentManager = getFragmentManager();
-		fragmentPlayer = (FragmentPlayer) fragmentManager.findFragmentByTag(FRAGMENT_PLAYER_KEY);
+		FragmentPlayer fragmentPlayer = (FragmentPlayer) fragmentManager.findFragmentByTag(FRAGMENT_PLAYER_KEY);
 		if(fragmentPlayer == null){
 			fragmentPlayer = new FragmentPlayer();
 			fragmentPlayer.setRetainInstance(true);
